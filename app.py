@@ -21,6 +21,10 @@ CARPETA=os.path.join('uploads')
 app.config['CARPETA']=CARPETA
 
 
+@app.route("/")
+def saludo():
+        return"<h1>Hola mundo</h1>"
+
 @app.route('/uploads/<nombreFoto>')
 def uploads(nombreFoto):
         return send_from_directory(app.config['CARPETA'],nombreFoto)
@@ -41,7 +45,7 @@ def empleados():
                 content = {}
         return jsonify(data)
 
-@app.route('/')
+@app.route('/index')
 def index():
         sql="SELECT * FROM `sql10508116`.`productos`;"
         conn=mysql.connect()
