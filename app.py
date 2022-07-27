@@ -63,7 +63,7 @@ def destroy(id):
         conn.commit()
         nombreFoto= cursor.fetchone()[0]
         try:
-                os.remove(os.path.join('Backend/Productos/uploads/', nombreFoto))
+                os.remove(os.path.join('Productos/uploads/', nombreFoto))
         except:
                 pass
         cursor.execute("DELETE FROM `sql10508116`.`productos` WHERE id=%s",id)
@@ -95,12 +95,12 @@ def update():
         tiempo= now.strftime("%Y%H%M%S")
         if _foto.filename!='':
                 nuevoNombre=tiempo+_foto.filename
-                _foto.save("Backend/Productos/uploads/"+nuevoNombre)
+                _foto.save("Productos/uploads/"+nuevoNombre)
                 cursor.execute("SELECT foto FROM `sql10508116`.`productos` WHERE id=%s",id)
                 conn.commit()
                 nombreFoto= cursor.fetchone()[0]
                 try:
-                        os.remove(os.path.join('Backend/Productos/uploads/', nombreFoto))
+                        os.remove(os.path.join('Productos/uploads/', nombreFoto))
                 except:
                         pass
                 cursor.execute("UPDATE `sql10508116`.`productos` SET foto=%s WHERE id=%s", (nuevoNombre, id))
@@ -131,7 +131,7 @@ def storage():
 
         if _foto.filename!='':
                 nuevoNombre=tiempo+_foto.filename
-                _foto.save("Backend/Productos/uploads/"+nuevoNombre)
+                _foto.save("Productos/uploads/"+nuevoNombre)
 
         
         sql="INSERT INTO `sql10508116`.`productos` (`id`, `nombre`, `descripcion`, `precio`, `foto`) VALUES (NULL, %s, %s, %s, %s);"
